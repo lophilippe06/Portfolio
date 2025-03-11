@@ -1,0 +1,592 @@
+/* Ordre des varibles
+position
+taille
+padding margin
+border
+couleur
+texte (align, color)
+display justify-content align-items gap flex-direction */
+
+@import url("https://fonts.googleapis.com/css2?family=Oswald&family=Roboto:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald&family=PT+Sans&family=Roboto:wght@100&display=swap");
+
+:root {
+    --color-primaire: #ffd803;
+    --color-secondaire: #ffffff;
+    --color-terciere: #e3f6f5;
+    --color-autre: #2d334a;
+    --color-texte: #4d536b;
+    --color-backgroud: #fffffe;
+    --color-button: #ffd803;
+    /* Taille texte */
+    --texte: 18px;
+    --titre: 24px;
+    --style: "Inter", sans-serif;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+/* span {
+    font-weight: 600;
+    letter-spacing: 0.75px;
+} */
+
+.header {
+    position: fixed;
+    width: 100%;
+    border-bottom: 1px solid var(--color-backgroud);
+    background-color: var(--color-backgroud);
+    z-index: 1000; /*Faire passer un premier plan*/
+}
+a {
+    text-decoration: none;
+    color: var(--color-texte);
+}
+
+.colorPage {
+    background-color: var(--color-terciere);
+    padding: 16px 64px;
+}
+.colorPage2 {
+    background-color: var(--color-secondaire);
+    padding: 16px 64px;
+}
+
+.barreNav {
+    top: 0;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.barreNav .contenantNav {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    list-style: none;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.barreNav .contenantNav .contenuNav a {
+    text-decoration: none;
+    font-size: 16px;
+    color: var(--color-texte);
+    display: block;
+}
+.barreNav .contenantNav .contenuNav a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.5rem;
+    text-decoration-color: var(--color-texte);
+}
+
+.logo a {
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+.logo img {
+    width: 20px;
+    height: 20px;
+}
+.apropos {
+    margin-top: 50px;
+}
+.etudiante {
+    /* text-transform: uppercase; */
+    font-size: var(--titre);
+    font-family: var(--style);
+    margin-bottom: 8px;
+}
+.button_capsule {
+    position: relative;
+    width: 10%;
+    height: 20px;
+    padding: 1rem 1rem;
+    border-radius: 8px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    background-color: var(--color-button);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.button_cv {
+    background-color: var(--color-button);
+    align-items: center;
+    width: 97px;
+    padding: 1.2rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+}
+.txt_button {
+    font-family: var(--style);
+    font-size: var(--texte);
+    color: var(--color-texte);
+    text-decoration: none;
+}
+/* Texte de la page  */
+.devant,
+.derriere,
+.contenuNav,
+p,
+small,
+.formation,
+.feuille,
+.date,
+.vert {
+    font-family: var(--style);
+    font-weight: 400;
+    font-style: normal;
+    color: var(--color-texte);
+    text-align: justify;
+    font-size: var(--texte);
+    flex-wrap: wrap;
+    letter-spacing: 0.75px;
+}
+
+.propos {
+    padding: 16px 0px;
+    text-align: left;
+    line-height: 1.2;
+}
+
+/* TITRE */
+.conteneurTitre {
+    display: flex;
+    align-items: center;
+}
+
+.iconTitre {
+    height: 28px;
+    width: 28px;
+    margin-right: 12px;
+    fill: var(--color-texte); /* Couleur des icônes */
+}
+
+.titre {
+    display: flex;
+    align-items: center; /* Aligne l'icône et le texte verticalement */
+    text-transform: uppercase;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    color: var(--color-texte);
+    scroll-margin-top: 65px;
+    font-size: var(--titre);
+    margin-top: 16px;
+}
+
+.titreHaut {
+    margin-top: 150px;
+}
+/* FIN TITRE */
+
+.moi {
+    float: right;
+    height: 350px;
+    margin-top: 5%;
+    margin-right: 6%;
+}
+
+.box1 {
+    margin-bottom: 5%;
+}
+
+progress {
+    width: 200px;
+    height: 15px;
+    margin-right: 10px;
+    appearance: none; /* Supprime le style par défaut */
+}
+
+progress::-webkit-progress-bar {
+    background-color: var(--color-terciere); /* Couleur de fond de la jauge */
+    border-radius: 8px;
+}
+
+progress::-webkit-progress-value {
+    background-color: var(--color-primaire); /* Couleur de la barre de progression*/
+    border-radius: 8px;
+}
+.divi {
+    background-color: var(--color-secondaire);
+    border: solid, 1.5px;
+    border-color: var(--color-secondaire);
+    padding: 1.5em;
+    margin-bottom: 3%;
+}
+.esp {
+    padding: 3em;
+}
+.feuille {
+    margin-bottom: 5%;
+    margin-top: 3%;
+    margin-left: 10%;
+}
+.feuille2 {
+    margin-bottom: 5%;
+    margin-top: 3%;
+    margin-right: 10%;
+}
+
+.esp {
+    padding: 3em;
+}
+
+.crea {
+    height: 100px;
+    width: 100px;
+}
+
+.qualite {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6%;
+}
+
+.technique {
+    background-color: var(--color-secondaire);
+    border: 1.5px solid var(--color-secondaire);
+    border-radius: 30px;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3em;
+}
+
+.icon {
+    height: 60px;
+    margin-bottom: 10px;
+}
+
+/* FORMATION */
+.conteneurFormation {
+    padding: 24px;
+
+    border: solid, 1.5px;
+    border-color: var(--color-secondaire);
+    border-radius: 8px;
+    background-color: var(--color-secondaire);
+
+    display: flex;
+    gap: 24px;
+    flex-direction: column;
+}
+.contenuFormation {
+}
+.titreFormation {
+    font-weight: 700;
+}
+.txtFormation {
+}
+/* FIN FORMATION */
+
+/* LIGNE VERTICAL EXP PRO */
+
+/* Conteneur principal de la timeline */
+.timeline {
+    position: relative;
+    width: 400px;
+    height: 500px;
+    text-align: center;
+    margin: auto;
+    margin-bottom: 750px;
+}
+
+/* Cercle en haut */
+.circle {
+    width: 30px;
+    height: 30px;
+    background-color: #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.circleBas {
+    width: 30px;
+    height: 30px;
+    background-color: #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 1150px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Ligne verticale */
+.line {
+    width: 2px;
+    height: 1150px;
+    background-color: black;
+    position: absolute;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Ligne horizontale */
+.horizontal-line {
+    width: 50px;
+    height: 2px;
+    background-color: black;
+    position: absolute;
+    left: 50%;
+}
+.line1 {
+    top: 245px; /* Position en fonction de la hauteur de la ligne verticale */
+    transform: translateX(-100%);
+}
+.line2 {
+    top: 470px; /* Position en fonction de la hauteur de la ligne verticale */
+}
+
+.line3 {
+    top: 695px;
+    transform: translateX(-100%);
+}
+.line4 {
+    top: 920px; /* Position en fonction de la hauteur de la ligne verticale */
+}
+
+/* Contenu texte à gauche */
+.content.left {
+    position: absolute;
+    left: -350px; /* Position en fonction de la ligne verticale */
+    width: 400px;
+    text-align: right;
+    background-color: var(--color-terciere);
+    padding: 2em;
+    border-radius: 8px;
+}
+
+/* Contenu texte à droite */
+.content.right {
+    position: absolute;
+    right: -350px;
+    width: 400px;
+    text-align: left;
+    background-color: var(--color-terciere);
+    padding: 2em;
+    border-radius: 8px;
+}
+.hauteur1 {
+    top: 65px;
+}
+.hauteur2 {
+    top: 280px;
+}
+.hauteur3 {
+    top: 520px;
+}
+.hauteur4 {
+    top: 740px;
+}
+.imgExp {
+    height: 80px;
+    float: left;
+    margin-right: 68%;
+    margin-bottom: 4%;
+    border-radius: 8px;
+}
+/* FIN LIGNE VERTICAL EXP PRO */
+
+/*  COMP. TECHNIQUE */
+.conteneurComp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    flex-direction: column;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+.conteneurComp .lg1,
+.conteneurComp .lg2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+.conteneurComp .card {
+    padding: 16px 32px;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 32px;
+    flex-direction: column;
+    flex: 1 0 0;
+    align-self: stretch;
+}
+
+.conteneurComp .card .cdText {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-direction: column;
+    align-self: stretch;
+}
+.conteneurComp .card .cdIcon {
+    width: 124px;
+    height: 124px;
+}
+.cardColor1 {
+    background: var(--color-secondaire);
+}
+.cardColor2 {
+    background: var(--color-terciere);
+}
+.conteneurComp .card .cdTitle {
+    color: var(--color-texte);
+    font-size: var(--texte);
+    font-weight: 700;
+    letter-spacing: 0.32px;
+    text-transform: uppercase;
+}
+.conteneurComp .card .cdText .cdPara {
+    color: var(--color-texte);
+    font-size: var(--texte);
+    font-weight: 400;
+    letter-spacing: 0.32px;
+    align-self: stretch;
+}
+/* FIN COMP. TECHNIQUE */
+
+/* PROJET */
+.conteneurProjet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3%;
+}
+
+.choixProjet {
+    position: relative;
+    padding: 1em;
+    border: 1.5px solid var(--color-secondaire);
+    border-radius: 32px;
+    background-color: var(--color-secondaire);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.titreProjet {
+    font-size: var(--texte);
+    float: left;
+    text-transform: uppercase;
+}
+
+.imgProjet {
+    border-radius: 16px;
+    width: 350px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+/* FIN PROJET */
+
+/* DIVERS */
+.conteneurDivers {
+    display: flex;
+    gap: 20px;
+}
+.contenuDivers {
+    border: solid, 8px;
+    border-color: var(--color-terciere);
+    background-color: var(--color-terciere);
+    border-radius: 32px;
+    padding: 32px;
+    flex: 1;
+    min-width: 250px; /* Pour éviter qu'elles deviennent trop petites */
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+}
+.titreDivers {
+    align-items: center;
+    font-size: var(--titre);
+    float: left;
+    text-transform: uppercase;
+}
+.imgDivers {
+    height: 250px;
+    margin: auto;
+}
+
+.txtDivers {
+    font-family: var(--style);
+    font-weight: 400;
+    font-style: normal;
+    color: var(--color-texte);
+    text-align: justify;
+    font-size: var(--texte);
+    margin-bottom: 32px;
+}
+/* FIN DIVERS */
+
+/* CV */
+.affichageCV {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    height: 500px;
+    width: 700px;
+    border-radius: 20px;
+}
+/* FIN CV */
+
+/* CONTACT */
+
+.conteneurContact {
+}
+
+.iconContact {
+    height: 28px;
+    width: 28px;
+    margin-right: 12px;
+    fill: var(--color-texte); /* Couleur des icônes */
+}
+
+.txtContact {
+    display: flex;
+    align-items: center; /* Aligne l'icône et le texte verticalement */
+
+    text-decoration: none;
+    vertical-align: middle;
+}
+.infoContact {
+    display: flex;
+    align-items: center;
+    margin: 20px;
+}
+
+/* FIN CONTACT */
+
+.footer {
+    justify-content: center;
+    display: flex;
+}

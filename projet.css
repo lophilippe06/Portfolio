@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Oswald&family=Roboto:wght@100&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Oswald&family=PT+Sans&family=Roboto:wght@100&display=swap");
+
+:root {
+    --color-primaire: #ffd803;
+    --color-secondaire: #ffffff;
+    --color-terciere: #e3f6f5;
+    --color-autre: #2d334a;
+    --color-texte: #4d536b;
+    --color-backgroud: #fffffe;
+    --color-button: #ffd803;
+    /* Taille texte */
+    --texte: 18px;
+    --titre: 24px;
+    --style: "Inter", sans-serif;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-attachment: fixed;
+    background-color: var(--color-terciere);
+    background-size: cover;
+}
+.page {
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+    margin-bottom: 6%;
+}
+
+.division {
+    margin-top: 5%;
+}
+aside {
+    float: right;
+}
+.buttonAccueil,
+.github {
+    position: relative;
+    width: 10%;
+    height: 20px;
+    padding: 1rem 1rem;
+    border-radius: 8px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    background-color: var(--color-button);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.accueil {
+    text-decoration: none;
+    font-family: "PT Sans", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    color: #ffffff;
+    text-align: justify;
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+.icon {
+    height: 20px;
+    width: 20px;
+    margin: 0;
+    vertical-align: middle;
+    filter: invert(100%) brightness(200%);
+}
+
+/* TABLEAU DES NOTES */
+.tableauNote {
+    border-collapse: collapse;
+    margin-left: 16px;
+    margin-top: 32px;
+    border: 2px solid var(--color-primaire);
+}
+.tableauTitre {
+    padding: 8px;
+    background-color: var(--color-primaire);
+    color: var(--color-backgroud);
+    text-align: left;
+}
+.tableauValeur {
+    padding: 8px;
+    text-align: center;
+    background-color: var(--color-backgroud);
+    color: var(--color-texte);
+    border: 2px solid var(--color-primaire);
+}
+/* FIN TABLEAU DES NOTES */
+
+.footer {
+    justify-content: center;
+    display: flex;
+}
+p {
+    font-family: var(--style);
+    font-weight: 400;
+    font-style: normal;
+    color: var(--color-texte);
+    font-size: var(--texte);
+    flex-wrap: wrap;
+    letter-spacing: 0.75px;
+}
+.titre {
+    display: flex;
+    align-items: center; /* Aligne l'icône et le texte verticalement */
+    text-transform: uppercase;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    color: var(--color-texte);
+    scroll-margin-top: 65px;
+    font-size: var(--titre);
+    margin-top: 16px;
+}
+
+.sousTitre {
+    display: flex;
+    align-items: center; /* Aligne l'icône et le texte verticalement */
+    text-transform: uppercase;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    color: var(--color-texte);
+    scroll-margin-top: 65px;
+    font-size: var(--texte);
+    margin-top: 32px;
+    margin-bottom: 8px;
+}
+
+.imgProjet {
+    border-radius: 32px;
+    width: 350px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+    float: right;
+}
