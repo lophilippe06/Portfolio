@@ -18,6 +18,7 @@ display justify-content align-items gap flex-direction */
     --color-texte: #4d536b;
     --color-backgroud: #fffffe;
     --color-button: #ffd803;
+    --color-ligne: #333;
     /* Taille texte */
     --texte: 18px;
     --titre: 24px;
@@ -29,9 +30,9 @@ display justify-content align-items gap flex-direction */
 }
 
 body {
-    margin: 0;
     font-family: Arial, sans-serif;
 }
+
 /* span {
     font-weight: 600;
     letter-spacing: 0.75px;
@@ -42,7 +43,9 @@ body {
     width: 100%;
     border-bottom: 1px solid var(--color-backgroud);
     background-color: var(--color-backgroud);
-    z-index: 1000; /*Faire passer un premier plan*/
+    z-index: 9999; /*Faire passer un premier plan*/
+    border-radius: 0px 0px 25px 25px;
+    box-shadow: -1rem 0 0.5rem var(--color-terciere);
 }
 a {
     text-decoration: none;
@@ -52,12 +55,85 @@ a {
 .colorPage {
     background-color: var(--color-terciere);
     padding: 16px 64px;
+    position: relative;
 }
+
 .colorPage2 {
     background-color: var(--color-secondaire);
     padding: 16px 64px;
 }
 
+/* TEXTE  */
+.devant,
+.derriere,
+.contenuNav,
+p,
+small,
+.formation,
+.feuille,
+.date,
+.vert {
+    font-family: var(--style);
+    font-weight: 400;
+    font-style: normal;
+    color: var(--color-texte);
+    text-align: justify;
+    font-size: var(--texte);
+    flex-wrap: wrap;
+    letter-spacing: 0.75px;
+}
+
+/* TITRE */
+.conteneurTitre {
+    display: flex;
+    align-items: center;
+}
+
+.iconTitre {
+    height: 28px;
+    width: 28px;
+    margin-right: 12px;
+    fill: var(--color-texte); /* Couleur des icônes */
+}
+
+.titre {
+    display: flex;
+    align-items: center; /* Aligne l'icône et le texte verticalement */
+    text-transform: uppercase;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    color: var(--color-texte);
+    scroll-margin-top: 80px;
+    font-size: var(--titre);
+    margin-top: 16px;
+}
+
+.titreHaut {
+    margin-top: 150px;
+}
+/* FIN TITRE */
+
+/* BARRE PROGRESS */
+progress {
+    width: 200px;
+    height: 15px;
+    margin-right: 10px;
+    appearance: none; /* Supprime le style par défaut */
+}
+
+progress::-webkit-progress-bar {
+    background-color: var(--color-terciere); /* Couleur de fond de la jauge */
+    border-radius: 8px;
+}
+
+progress::-webkit-progress-value {
+    background-color: var(--color-primaire); /* Couleur de la barre de progression*/
+    border-radius: 8px;
+}
+/* FIN BARRE PROGRESS */
+
+/* BARRE NAV. */
 .barreNav {
     top: 0;
     padding: 16px 24px;
@@ -84,7 +160,7 @@ a {
 .barreNav .contenantNav .contenuNav a:hover {
     text-decoration: underline;
     text-underline-offset: 0.5rem;
-    text-decoration-color: var(--color-texte);
+    text-decoration-color: var(--color-primaire);
 }
 
 .logo a {
@@ -96,6 +172,15 @@ a {
     width: 20px;
     height: 20px;
 }
+/* FIN BARRE NAV. */
+
+/* A PROPOS DE MOI */
+.moi {
+    float: right;
+    height: 350px;
+    margin-top: 5%;
+    margin-right: 6%;
+}
 .apropos {
     margin-top: 50px;
 }
@@ -105,287 +190,186 @@ a {
     font-family: var(--style);
     margin-bottom: 8px;
 }
-.button_capsule {
-    position: relative;
-    width: 10%;
-    height: 20px;
-    padding: 1rem 1rem;
-    border-radius: 8px;
-    margin-top: 24px;
-    margin-bottom: 24px;
-    background-color: var(--color-button);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-.button_cv {
-    background-color: var(--color-button);
-    align-items: center;
-    width: 97px;
-    padding: 1.2rem 2rem;
-    border-radius: 8px;
-    cursor: pointer;
-    display: block;
-    margin: auto;
-}
-.txt_button {
-    font-family: var(--style);
-    font-size: var(--texte);
-    color: var(--color-texte);
-    text-decoration: none;
-}
-/* Texte de la page  */
-.devant,
-.derriere,
-.contenuNav,
-p,
-small,
-.formation,
-.feuille,
-.date,
-.vert {
-    font-family: var(--style);
-    font-weight: 400;
-    font-style: normal;
-    color: var(--color-texte);
-    text-align: justify;
-    font-size: var(--texte);
-    flex-wrap: wrap;
-    letter-spacing: 0.75px;
-}
-
 .propos {
     padding: 16px 0px;
     text-align: left;
     line-height: 1.2;
 }
-
-/* TITRE */
-.conteneurTitre {
-    display: flex;
-    align-items: center;
-}
-
-.iconTitre {
-    height: 28px;
-    width: 28px;
-    margin-right: 12px;
-    fill: var(--color-texte); /* Couleur des icônes */
-}
-
-.titre {
-    display: flex;
-    align-items: center; /* Aligne l'icône et le texte verticalement */
-    text-transform: uppercase;
-    font-optical-sizing: auto;
-    font-weight: 700;
-    font-style: normal;
-    color: var(--color-texte);
-    scroll-margin-top: 65px;
-    font-size: var(--titre);
-    margin-top: 16px;
-}
-
-.titreHaut {
-    margin-top: 150px;
-}
-/* FIN TITRE */
-
-.moi {
-    float: right;
-    height: 350px;
-    margin-top: 5%;
-    margin-right: 6%;
-}
-
-.box1 {
-    margin-bottom: 5%;
-}
-
-progress {
-    width: 200px;
-    height: 15px;
-    margin-right: 10px;
-    appearance: none; /* Supprime le style par défaut */
-}
-
-progress::-webkit-progress-bar {
-    background-color: var(--color-terciere); /* Couleur de fond de la jauge */
-    border-radius: 8px;
-}
-
-progress::-webkit-progress-value {
-    background-color: var(--color-primaire); /* Couleur de la barre de progression*/
-    border-radius: 8px;
-}
-.divi {
-    background-color: var(--color-secondaire);
-    border: solid, 1.5px;
-    border-color: var(--color-secondaire);
-    padding: 1.5em;
-    margin-bottom: 3%;
-}
-.esp {
-    padding: 3em;
-}
-.feuille {
-    margin-bottom: 5%;
-    margin-top: 3%;
-    margin-left: 10%;
-}
-.feuille2 {
-    margin-bottom: 5%;
-    margin-top: 3%;
-    margin-right: 10%;
-}
-
-.esp {
-    padding: 3em;
-}
-
-.crea {
-    height: 100px;
-    width: 100px;
-}
-
-.qualite {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 6%;
-}
-
-.technique {
-    background-color: var(--color-secondaire);
-    border: 1.5px solid var(--color-secondaire);
-    border-radius: 30px;
-    width: 200px;
-    height: 200px;
+.button_capsule {
     position: relative;
+    padding: 16px;
+    border-radius: 16px;
+    margin-top: 24px;
+    margin-bottom: 24px;
+    background-color: var(--color-button);
+    border: solid 3px var(--color-button);
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 3em;
+    cursor: pointer;
+    font-family: var(--style);
+    font-size: var(--texte);
+    color: var(--color-texte);
+    text-decoration: none;
 }
 
-.icon {
-    height: 60px;
-    margin-bottom: 10px;
+.button_capsule:hover {
+    background-color: var(--color-secondaire);
+    color: var(--color-button);
 }
+/* FIN A PROPOS DE MOI */
 
 /* FORMATION */
 .conteneurFormation {
-    padding: 24px;
-
-    border: solid, 1.5px;
-    border-color: var(--color-secondaire);
-    border-radius: 8px;
-    background-color: var(--color-secondaire);
-
     display: flex;
-    gap: 24px;
     flex-direction: column;
+    gap: 24px;
 }
 .contenuFormation {
+    padding: 32px;
+    border: solid, 1.5px;
+    border-color: var(--color-secondaire);
+    border-radius: 16px;
+    background-color: var(--color-secondaire);
 }
 .titreFormation {
     font-weight: 700;
 }
 .txtFormation {
+    text-align: start;
+}
+.conteneurTitreFormation {
+    display: flex;
+    justify-content: space-between;
+}
+
+.iconFormation {
+    height: 18px;
+    width: 18px;
+    fill: var(--color-texte); /* Couleur des icônes */
 }
 /* FIN FORMATION */
 
 /* LIGNE VERTICAL EXP PRO */
-
-/* Conteneur principal de la timeline */
-.timeline {
+.conteneurLigne {
     position: relative;
     width: 400px;
-    height: 500px;
+    height: 1420px; /* Assure la hauteur totale pour englober les cercles */
     text-align: center;
     margin: auto;
-    margin-bottom: 750px;
 }
 
 /* Cercle en haut */
 .circle {
     width: 30px;
     height: 30px;
-    background-color: #333;
+    background-color: var(--color-ligne);
     border-radius: 50%;
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
 }
+
+/* Cercle en bas */
 .circleBas {
     width: 30px;
     height: 30px;
-    background-color: #333;
+    background-color: var(--color-ligne);
     border-radius: 50%;
     position: absolute;
-    top: 1150px;
+    top: 1350px;
     left: 50%;
     transform: translateX(-50%);
 }
 
-/* Ligne verticale */
-.line {
-    width: 2px;
-    height: 1150px;
-    background-color: black;
+/* Barre verticale (placée entre les cercles) */
+.barVertical {
     position: absolute;
-    top: 30px;
+    top: 30px; /* Juste en dessous de .circle */
+    height: 1340px; /* Jusqu'à juste au-dessus de .circleBas */
     left: 50%;
     transform: translateX(-50%);
+    width: 2px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+    background: transparent;
+}
+
+/* Progression de la barre */
+.scrollProgress {
+    width: 100%;
+    height: 0%;
+    background-color: var(--color-ligne);
+    transition: height 0.2s ease-out;
+    transform-origin: top;
 }
 
 /* Ligne horizontale */
-.horizontal-line {
+.horizontalLine {
+    position: absolute;
     width: 50px;
     height: 2px;
-    background-color: black;
-    position: absolute;
-    left: 50%;
+    top: 50%;
 }
-.line1 {
-    top: 245px; /* Position en fonction de la hauteur de la ligne verticale */
-    transform: translateX(-100%);
+.leftLine {
+    right: -85px; /* sort vers la droite de la boîte */
+    background-color: var(--color-ligne);
 }
-.line2 {
-    top: 470px; /* Position en fonction de la hauteur de la ligne verticale */
-}
-
-.line3 {
-    top: 695px;
-    transform: translateX(-100%);
-}
-.line4 {
-    top: 920px; /* Position en fonction de la hauteur de la ligne verticale */
+.rightLine {
+    left: -85px; /* sort vers la droite de la boîte */
+    background-color: var(--color-ligne);
 }
 
 /* Contenu texte à gauche */
-.content.left {
+.left {
     position: absolute;
     left: -350px; /* Position en fonction de la ligne verticale */
     width: 400px;
     text-align: right;
     background-color: var(--color-terciere);
     padding: 2em;
-    border-radius: 8px;
+    border-radius: 16px;
 }
 
 /* Contenu texte à droite */
-.content.right {
+.right {
     position: absolute;
     right: -350px;
     width: 400px;
     text-align: left;
     background-color: var(--color-terciere);
     padding: 2em;
-    border-radius: 8px;
+    border-radius: 16px;
 }
+
+/* Contenu masqué par défaut */
+.hiddenContent {
+    opacity: 0; /* Rend l'élément complètement transparent */
+    transition: all 0.8s ease-in-out; /* Transition douce lors de l'apparition/disparition */
+}
+
+/* Contenu visible une fois activé */
+.visibleContent {
+    opacity: 1; /* L'élément devient visible */
+    transform: translateY(0); /* Le remet à sa position d'origine */
+    transition: all 0.8s ease-in-out; /* Même transition douce pour la cohérence */
+}
+
+.left .horizontalLine,
+.right .horizontalLine {
+    opacity: 0;
+    transform: scaleX(0);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.left.visibleContent .horizontalLine,
+.right.visibleContent .horizontalLine {
+    opacity: 1;
+    transform: scaleX(1);
+}
+
 .hauteur1 {
     top: 65px;
 }
@@ -397,6 +381,9 @@ progress::-webkit-progress-value {
 }
 .hauteur4 {
     top: 740px;
+}
+.hauteur5 {
+    top: 970px;
 }
 .imgExp {
     height: 80px;
@@ -428,8 +415,8 @@ progress::-webkit-progress-value {
     flex: 1 0 0;
     align-self: stretch;
 }
-.conteneurComp .card {
-    padding: 16px 32px;
+.conteneurComp .cardComp {
+    padding: 32px;
     border-radius: 16px;
     display: flex;
     justify-content: space-between;
@@ -440,7 +427,7 @@ progress::-webkit-progress-value {
     align-self: stretch;
 }
 
-.conteneurComp .card .cdText {
+.conteneurComp .cardComp .cdText {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -448,7 +435,7 @@ progress::-webkit-progress-value {
     flex-direction: column;
     align-self: stretch;
 }
-.conteneurComp .card .cdIcon {
+.conteneurComp .cardComp .cdIcon {
     width: 124px;
     height: 124px;
 }
@@ -458,14 +445,14 @@ progress::-webkit-progress-value {
 .cardColor2 {
     background: var(--color-terciere);
 }
-.conteneurComp .card .cdTitle {
+.conteneurComp .cardComp .cdTitle {
     color: var(--color-texte);
     font-size: var(--texte);
     font-weight: 700;
     letter-spacing: 0.32px;
     text-transform: uppercase;
 }
-.conteneurComp .card .cdText .cdPara {
+.conteneurComp .cardComp .cdText .cdPara {
     color: var(--color-texte);
     font-size: var(--texte);
     font-weight: 400;
@@ -486,13 +473,14 @@ progress::-webkit-progress-value {
     position: relative;
     padding: 1em;
     border: 1.5px solid var(--color-secondaire);
-    border-radius: 32px;
+    border-radius: 16px;
     background-color: var(--color-secondaire);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
+
 .titreProjet {
     font-size: var(--texte);
     float: left;
@@ -505,6 +493,102 @@ progress::-webkit-progress-value {
     margin-top: 12px;
     margin-bottom: 12px;
 }
+
+.containerProjet {
+    margin: 32px;
+    display: flex;
+}
+
+.videoProjet {
+    border-radius: 8px;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.cardProject a {
+    width: 100%;
+}
+
+.carteConteneur {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+}
+
+@media (min-width: 768px) {
+    .projet {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.cardProject {
+    width: 40%;
+    display: flex;
+    background-color: white;
+    border-radius: 16px;
+    box-shadow: -1rem 0 1rem var(--color-terciere);
+    transition: 0.4s ease-out;
+    flex-direction: column;
+    padding: 24px;
+    position: relative;
+    left: 0px;
+}
+
+.cardProject:not(:first-child) {
+    margin-left: -50px;
+}
+
+.cardProject:hover {
+    transform: translateY(-20px);
+    transition: 0.4s ease-out;
+}
+
+.cardProject:hover ~ .cardProject {
+    position: relative;
+    left: 50px;
+    transition: 0.4s ease-out;
+}
+
+.badge {
+    background-color: #e0f7fa;
+    color: var(--color-texte);
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    display: inline-block;
+}
+.cardProject .titreP {
+    font-size: var(--titre);
+    color: var(--color-texte);
+}
+.cardProject p {
+    color: #4a4a4a;
+    margin-bottom: 16px;
+}
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.tag {
+    background-color: var(--color-button);
+    color: var(--color-texte);
+    font-size: 0.875rem;
+    padding: 4px 12px;
+    border-radius: 1000px;
+}
+.links {
+    display: flex;
+}
+.links a {
+    width: 100%;
+    color: var(--color-texte);
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
 /* FIN PROJET */
 
 /* DIVERS */
@@ -516,7 +600,7 @@ progress::-webkit-progress-value {
     border: solid, 8px;
     border-color: var(--color-terciere);
     background-color: var(--color-terciere);
-    border-radius: 32px;
+    border-radius: 16px;
     padding: 32px;
     flex: 1;
     min-width: 250px; /* Pour éviter qu'elles deviennent trop petites */
@@ -555,14 +639,29 @@ progress::-webkit-progress-value {
     margin-right: auto;
     height: 500px;
     width: 700px;
-    border-radius: 20px;
+    border-radius: 16px;
+}
+.button_cv {
+    align-items: center;
+    padding: 16px;
+    border-radius: 16px;
+    cursor: pointer;
+    border: solid 3px var(--color-button);
+    background-color: var(--color-button);
+    display: block;
+    margin: auto;
+    font-family: var(--style);
+    font-size: var(--texte);
+    color: var(--color-texte);
+    text-decoration: none;
+}
+.button_cv:hover {
+    background-color: var(--color-secondaire);
+    color: var(--color-button);
 }
 /* FIN CV */
 
 /* CONTACT */
-
-.conteneurContact {
-}
 
 .iconContact {
     height: 28px;
@@ -570,23 +669,24 @@ progress::-webkit-progress-value {
     margin-right: 12px;
     fill: var(--color-texte); /* Couleur des icônes */
 }
-
-.txtContact {
-    display: flex;
-    align-items: center; /* Aligne l'icône et le texte verticalement */
-
-    text-decoration: none;
-    vertical-align: middle;
-}
 .infoContact {
     display: flex;
     align-items: center;
     margin: 20px;
 }
-
+.txtContact {
+    display: flex;
+    align-items: center; /* Aligne l'icône et le texte verticalement */
+    text-decoration: none;
+    vertical-align: middle;
+    font-size: var(--texte);
+}
 /* FIN CONTACT */
 
+/* FOOTER */
 .footer {
     justify-content: center;
     display: flex;
+    margin-bottom: 16px;
 }
+/* FIN FOOTER */
