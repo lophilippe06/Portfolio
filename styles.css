@@ -148,11 +148,12 @@ section {
 .conteneurImg {
     position: relative;
 }
+
 /* ACTION BOUGER HAUT EN BAS */
 @keyframes bougeHautBas {
     0%,
     100% {
-        transform: translateY(-4px);
+        transform: translateY(-15px);
     }
     50% {
         transform: translateY(0px);
@@ -162,7 +163,7 @@ section {
 @keyframes avancerDroitGauche {
     0%,
     100% {
-        transform: translateX(-4px);
+        transform: translateX(-15px);
     }
     50% {
         transform: translateX(0px);
@@ -191,37 +192,37 @@ section {
     position: absolute;
     top: 320px;
     left: -24px;
-    animation: avancerDroitGauche 3s infinite;
+    animation: avancerDroitGauche 6s infinite;
 }
 .elt2 {
     position: absolute;
     top: 120px;
     left: -55px;
-    animation: bougeHautBas 6s infinite;
+    animation: bougeHautBas 4s infinite;
 }
 .elt3 {
     position: absolute;
     top: -45px;
     left: 140px;
-    animation: avancerDroitGauche 3s infinite;
+    animation: avancerDroitGauche 6s infinite;
 }
 .elt4 {
     position: absolute;
     top: 32px;
     right: -64px;
-    animation: bougeHautBas 6s infinite;
+    animation: bougeHautBas 4s infinite;
 }
 .elt5 {
     position: absolute;
     bottom: -32px;
     right: 120px;
-    animation: bougeHautBas 3s infinite;
+    animation: bougeHautBas 6s infinite;
 }
 .elt6 {
     position: absolute;
     top: 256px;
     right: -52px;
-    animation: avancerDroitGauche 6s infinite;
+    animation: avancerDroitGauche 4s infinite;
 }
 /* FIN ACCUEIL */
 
@@ -251,8 +252,18 @@ section {
     align-items: center;
     gap: 16px;
 }
+.contenuLien {
+    justify-content: center;
+    gap: 16px;
+    align-items: center;
+    text-decoration: none;
+    display: flex;
+    color: var(--color-texte);
+}
+
 .bougerFleche {
     animation: bougerDroitGauche 2s infinite;
+    cursor: pointer;
 }
 /* FIN A PROPOS DE MOI */
 
@@ -352,10 +363,6 @@ section {
     -ms-overflow-style: none; IE/Edge */
 }
 
-/* .scrollHorizontal::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera 
-} */
-
 /* EXPERIENCES */
 .exp {
     flex: 0 0 160vw;
@@ -419,38 +426,6 @@ section {
     font-family: var(--style-texte);
     color: var(--color-texte);
 }
-/* .conteneurExp {
-    position: relative;
-}
-.contenuExp {
-    position: absolute;
-    width: 400px;
-    margin-top: 16px;
-}
-.contenu2 {
-    left: 500px;
-    top: 50px;
-}
-.contenu3 {
-    left: 1000px;
-}
-.contenu4 {
-    left: 1500px;
-    top: 50px;
-}
-.contenu5 {
-    left: 2000px;
-}
-.titreExp {
-    font-size: var(--titre);
-    font-family: var(--style-titre);
-    color: var(--color-texte);
-    margin-bottom: 16px;
-}
-.txtExp {
-    font-size: var(--texte);
-    color: var(--color-texte);
-} */
 /* FIN EXPERIENCES */
 
 /* COMPETENCES */
@@ -533,11 +508,6 @@ section {
     color: var(--color-button);
 }
 .sousComp {
-    /* display: flex;
-    flex-direction: column;
-    gap: 64px;
-    margin-right: 50px;
-    margin-left: 50px; */
     max-width: 800px;
     margin: 30px auto;
     overflow: hidden;
@@ -575,7 +545,9 @@ section {
     font-size: var(--texte);
     font-family: var(--style-texte);
     line-height: 1.6;
-    transition: max-height 0.4s ease, padding 0.4s ease;
+    transition:
+        max-height 0.4s ease,
+        padding 0.4s ease;
 }
 
 .textComp.open {
@@ -845,6 +817,7 @@ progress::-webkit-progress-value {
 .buttonCV {
     background-color: white;
     border: none;
+    cursor: pointer;
 }
 .cvImage {
     width: 350px;
@@ -925,23 +898,30 @@ progress::-webkit-progress-value {
     position: fixed;
     bottom: 0;
     left: 0;
-    /* width: 584px;  <= SUPPRIMER */
-    width: auto; /* laisse s’adapter à l’image */
+    width: auto;
     height: auto;
-    pointer-events: none;
+    pointer-events: all;
     z-index: 2147483647;
     transition: opacity 0.25s ease;
     will-change: transform;
+    cursor: grab;
 }
+
 .car-wrapper.hidden {
     opacity: 0;
     visibility: hidden;
     display: none !important;
+    pointer-events: none;
+}
+
+.car-wrapper.dragging {
+    cursor: grabbing !important;
 }
 
 .car {
-    /* mets la taille que tu veux ici */
-    width: 420px; /* exemple : ta nouvelle taille */
+    width: 400px;
     height: auto;
     display: block;
+    user-select: none;
+    -webkit-user-drag: none;
 }

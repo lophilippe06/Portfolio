@@ -1,16 +1,16 @@
 const scrollContainer = document.querySelector(".scrollHorizontal");
-const scrollSpeed = 2;
+const scrollSpeed = 5;
 const accordions = document.querySelectorAll(".titreSousComp");
 
-// Scroll horizontal avec molette
+// Scroll horizontal avec molette, bloqué aux extrémités
 window.addEventListener(
     "wheel",
     (e) => {
-        // Si une box est ouverte → pas de scroll
+        // 🚫 Si une box est ouverte → on ne scrolle pas l'horizontal
         if (window.location.hash.startsWith("#box")) return;
 
         const rect = scrollContainer.getBoundingClientRect();
-        const tolerance = 25; // marge en pixel
+        const tolerance = 25; // marge ajustable
         const inZone = rect.top <= tolerance && rect.bottom > window.innerHeight - tolerance;
         if (!inZone) return;
 
@@ -24,24 +24,31 @@ window.addEventListener(
             scrollContainer.scrollLeft += e.deltaY * scrollSpeed;
         }
     },
-    { passive: false }
+    { passive: false },
 );
 
 // ----- Porsche -----
 const carWrapper = document.querySelector(".car-wrapper");
 const carImg = document.querySelector(".car");
 
+// Variable pour le drag (doit être déclarée avant updateCar)
+let isDragging = false;
+
 function getCarWidth() {
+    // largeur réellement rendue (tient compte de la réduction)
     const w = carImg.getBoundingClientRect().width;
     return w > 0 ? w : carImg.naturalWidth || 0;
 }
 
 function updateCar() {
+    // ⚠️ NE RIEN FAIRE pendant le drag manuel
+    if (isDragging) return;
+
     const rect = scrollContainer.getBoundingClientRect();
     const tolerance = 25;
     const inZone = rect.top <= tolerance && rect.bottom > window.innerHeight - tolerance;
 
-    // Si une box est ouverte, on cache la voiture
+    // 🚫 Si une box est ouverte → on cache la voiture
     if (window.location.hash.startsWith("#box")) {
         carWrapper.classList.add("hidden");
         return;
@@ -64,12 +71,159 @@ function updateCar() {
     carWrapper.style.transform = `translateX(${x}px)`;
 }
 
+// événements
 scrollContainer.addEventListener("scroll", updateCar);
 window.addEventListener("scroll", updateCar);
 window.addEventListener("resize", updateCar);
 if (carImg.complete) updateCar();
 else carImg.addEventListener("load", updateCar);
 
+// ----- Drag & Drop pour la voiture -----
+let dragStartX = 0;
+let dragStartScrollLeft = 0;
+let dragStartCarX = 0;
+
+carWrapper.addEventListener("mousedown", (e) => {
+    // Vérifier qu'on est dans la zone de scroll horizontal
+    const rect = scrollContainer.getBoundingClientRect();
+    const tolerance = 25;
+    const inZone = rect.top <= tolerance && rect.bottom > window.innerHeight - tolerance;
+
+    if (!inZone || window.location.hash.startsWith("#box")) return;
+
+    isDragging = true;
+    dragStartX = e.clientX;
+    dragStartScrollLeft = scrollContainer.scrollLeft;
+
+    // Récupérer la position X actuelle de la voiture
+    const transform = window.getComputedStyle(carWrapper).transform;
+    if (transform && transform !== "none") {
+        const matrix = transform.match(/matrix.*\((.+)\)/);
+        if (matrix) {
+            const values = matrix[1].split(", ");
+            dragStartCarX = parseFloat(values[4]) || 0;
+        }
+    } else {
+        dragStartCarX = 0;
+    }
+
+    carWrapper.classList.add("dragging");
+    // Empêcher la sélection de texte et changer le curseur globalement
+    document.body.style.userSelect = "none";
+    document.body.style.cursor = "grabbing";
+    // Désactiver scroll-behavior: smooth pour un déplacement en direct
+    scrollContainer.style.scrollBehavior = "auto";
+    e.preventDefault();
+});
+
+document.addEventListener("mousemove", (e) => {
+    if (!isDragging) return;
+
+    // Calculer le déplacement exact de la souris (ratio 1:1)
+    const deltaX = e.clientX - dragStartX;
+
+    // Calculer les dimensions
+    const scrollWidth = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+    const carWidth = getCarWidth();
+    const maxCarX = Math.max(0, window.innerWidth - carWidth);
+
+    // Nouvelle position de la voiture = position de départ + déplacement de la souris
+    let newCarX = dragStartCarX + deltaX;
+
+    // Limiter la voiture aux bords de l'écran
+    newCarX = Math.max(0, Math.min(maxCarX, newCarX));
+
+    // Calculer le scroll correspondant à cette position de voiture
+    const carPct = maxCarX > 0 ? newCarX / maxCarX : 0;
+    const newScrollLeft = carPct * scrollWidth;
+
+    // Mettre à jour scroll ET position voiture directement
+    scrollContainer.scrollLeft = newScrollLeft;
+    carWrapper.style.transform = `translateX(${newCarX}px)`;
+});
+
+document.addEventListener("mouseup", () => {
+    if (isDragging) {
+        isDragging = false;
+        carWrapper.classList.remove("dragging");
+        // Restaurer la sélection de texte et le curseur
+        document.body.style.userSelect = "";
+        document.body.style.cursor = "";
+        // Réactiver scroll-behavior: smooth
+        scrollContainer.style.scrollBehavior = "";
+    }
+});
+
+// Support tactile pour mobile
+let touchDragStartX = 0;
+let touchDragStartScrollLeft = 0;
+let touchDragStartCarX = 0;
+
+carWrapper.addEventListener(
+    "touchstart",
+    (e) => {
+        const rect = scrollContainer.getBoundingClientRect();
+        const tolerance = 25;
+        const inZone = rect.top <= tolerance && rect.bottom > window.innerHeight - tolerance;
+
+        if (!inZone || window.location.hash.startsWith("#box")) return;
+
+        isDragging = true;
+        touchDragStartX = e.touches[0].clientX;
+        touchDragStartScrollLeft = scrollContainer.scrollLeft;
+
+        // Récupérer la position X actuelle de la voiture
+        const transform = window.getComputedStyle(carWrapper).transform;
+        if (transform && transform !== "none") {
+            const matrix = transform.match(/matrix.*\((.+)\)/);
+            if (matrix) {
+                const values = matrix[1].split(", ");
+                touchDragStartCarX = parseFloat(values[4]) || 0;
+            }
+        } else {
+            touchDragStartCarX = 0;
+        }
+
+        scrollContainer.style.scrollBehavior = "auto";
+        e.preventDefault();
+    },
+    { passive: false },
+);
+
+document.addEventListener(
+    "touchmove",
+    (e) => {
+        if (!isDragging) return;
+
+        e.preventDefault();
+
+        const deltaX = e.touches[0].clientX - touchDragStartX;
+
+        const scrollWidth = scrollContainer.scrollWidth - scrollContainer.clientWidth;
+        const carWidth = getCarWidth();
+        const maxCarX = Math.max(0, window.innerWidth - carWidth);
+
+        let newCarX = touchDragStartCarX + deltaX;
+        newCarX = Math.max(0, Math.min(maxCarX, newCarX));
+
+        const carPct = maxCarX > 0 ? newCarX / maxCarX : 0;
+        const newScrollLeft = carPct * scrollWidth;
+
+        // ✅ APPLIQUER DIRECTEMENT
+        scrollContainer.scrollLeft = newScrollLeft;
+        carWrapper.style.transform = `translateX(${newCarX}px)`;
+    },
+    { passive: false },
+);
+
+document.addEventListener("touchend", () => {
+    if (isDragging) {
+        isDragging = false;
+        scrollContainer.style.scrollBehavior = "";
+    }
+});
+
+// ----- Accordéons -----
 accordions.forEach((accordion) => {
     accordion.addEventListener("click", () => {
         const panel = accordion.nextElementSibling;
@@ -98,11 +252,10 @@ window.addEventListener("hashchange", () => {
     if (!isBox) updateCar(); // recalcul dès qu'on quitte une box
 });
 
-// Chargement initial 
+// Au chargement initial (ex: retour navigateur sur une box)
 document.addEventListener("DOMContentLoaded", () => {
     const isBox = window.location.hash.startsWith("#box");
     document.body.style.overflow = isBox ? "hidden" : "";
     carWrapper.classList.toggle("hidden", isBox);
     updateCar();
 });
-
